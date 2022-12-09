@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import ru.alishev.springcourse.FirstSecurityApp.models.AccessLevel;
 import ru.alishev.springcourse.FirstSecurityApp.security.PersonDetails;
 import ru.alishev.springcourse.FirstSecurityApp.services.AdminService;
 
@@ -34,9 +35,10 @@ public class HelloController {
         return "hello";
     }
 
+    String edit = "edit";
     @GetMapping("/admin")
     public String adminPage() {
-        adminService.doAdminStuff();
+        adminService.doAdminStuff(edit);
         return "admin";
     }
 }
