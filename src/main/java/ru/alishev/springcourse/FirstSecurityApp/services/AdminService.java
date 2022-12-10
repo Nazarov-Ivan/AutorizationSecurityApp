@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.alishev.springcourse.FirstSecurityApp.models.AccessLevel;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Service
 public class AdminService {

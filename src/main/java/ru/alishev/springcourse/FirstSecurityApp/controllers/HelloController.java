@@ -10,7 +10,7 @@ import ru.alishev.springcourse.FirstSecurityApp.security.PersonDetails;
 import ru.alishev.springcourse.FirstSecurityApp.services.AdminService;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Controller
 public class HelloController {

@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Entity
 @Table(name = "Person")

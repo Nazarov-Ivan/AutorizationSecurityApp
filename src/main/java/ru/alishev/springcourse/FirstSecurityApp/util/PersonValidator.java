@@ -9,7 +9,7 @@ import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import ru.alishev.springcourse.FirstSecurityApp.services.PersonDetailsService;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Component
 public class PersonValidator implements Validator {

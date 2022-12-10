@@ -7,12 +7,13 @@ import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import ru.alishev.springcourse.FirstSecurityApp.models.PersonRoles;
 import ru.alishev.springcourse.FirstSecurityApp.models.Roles;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 public class PersonDetails implements UserDetails {
     private final Person person;
@@ -30,9 +31,12 @@ public class PersonDetails implements UserDetails {
         // SHOW_ACCOUNT, WITHDRAW_MONEY, SEND_MONEY
         // ROLE_ADMIN, ROLE_USER - это роли
         List<SimpleGrantedAuthority> list = new ArrayList<>();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         for (int i = 0; i < personRoles.size(); i++) {
             for (int j = 0; j < roles.get(i).getAuthorities().size(); j++) {
-                list.add(new SimpleGrantedAuthority(personRoles.get(i).getRole().getAuthorities().get(j)));
+                if (timestamp.after(personRoles.get(i).getFromDate()) && timestamp.before(personRoles.get(i).getByDate())) {
+                    list.add(new SimpleGrantedAuthority(personRoles.get(i).getRole().getAuthorities().get(j)));
+                }
             }
         }
 //        return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));

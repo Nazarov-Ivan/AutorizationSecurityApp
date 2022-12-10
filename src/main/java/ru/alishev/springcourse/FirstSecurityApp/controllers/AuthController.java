@@ -14,7 +14,7 @@ import ru.alishev.springcourse.FirstSecurityApp.util.PersonValidator;
 import javax.validation.Valid;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Controller
 @RequestMapping("/auth")

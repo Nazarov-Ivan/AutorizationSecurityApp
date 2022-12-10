@@ -7,7 +7,7 @@ import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import java.util.Optional;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {

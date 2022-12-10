@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.alishev.springcourse.FirstSecurityApp.services.PersonDetailsService;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
 //                .anyRequest().hasAnyAuthority("edit", "read", "closed")
+                .antMatchers("/admin").not().hasAuthority("closed_admin")
+                .antMatchers("/hello").not().hasAuthority("closed_hello")
                 .and()
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")

@@ -8,7 +8,7 @@ import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import ru.alishev.springcourse.FirstSecurityApp.repositories.PeopleRepository;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Service
 public class RegistrationService {

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author Neil Alishev
+ * @author Nazarov Ivan
  */
 @Service
 public class PersonDetailsService implements UserDetailsService {
