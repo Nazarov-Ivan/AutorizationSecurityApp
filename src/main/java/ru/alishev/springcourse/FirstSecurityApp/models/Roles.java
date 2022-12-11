@@ -1,12 +1,10 @@
 package ru.alishev.springcourse.FirstSecurityApp.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -22,16 +20,20 @@ public class Roles {
     @Column(name = "name", nullable = false, length = 25)
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private Set<PersonRoles> personRoles = new LinkedHashSet<>();
+//    @OneToMany(mappedBy = "role")
+//    private Set<PersonRoles> personRoles = new LinkedHashSet<>();
 
-    public Set<PersonRoles> getPersonRoles() {
-        return personRoles;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "authorities_id")
+    private Authorities authority;
 
-    public void setPersonRoles(Set<PersonRoles> personRoles) {
-        this.personRoles = personRoles;
-    }
+//    public Set<PersonRoles> getPersonRoles() {
+//        return personRoles;
+//    }
+//
+//    public void setPersonRoles(Set<PersonRoles> personRoles) {
+//        this.personRoles = personRoles;
+//    }
 
     public String getName() {
         return name;
@@ -49,17 +51,24 @@ public class Roles {
         this.id = id;
     }
 
-//    TODO [JPA Buddy] create field to map the 'authorities' column
-//     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-//    @Column(name = "authorities", columnDefinition = "varchar[]")
-    @Column(name = "authorities")
-    private String authority;
+    public Authorities getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authorities authorities) {
+        this.authority = authorities;
+    }
 
 
-    public List<String> getAuthorities() {
-        String delimeter = ", "; // Разделитель
-        String[] subStr = authority.split(delimeter);
-        return List.of(subStr);
+    public List<String> getAuthoritiesList() {
+        List<String> listAuthorities = new ArrayList<>();
+        if (authority.getAdmin().length() > 0) {
+            listAuthorities.add(authority.getAdmin());
+        }
+        if (authority.getHello().length() > 0) {
+            listAuthorities.add(authority.getHello());
+        }
+        return listAuthorities;
     }
 
 //    @Transient

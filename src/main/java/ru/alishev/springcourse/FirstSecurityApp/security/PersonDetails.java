@@ -3,6 +3,7 @@ package ru.alishev.springcourse.FirstSecurityApp.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.alishev.springcourse.FirstSecurityApp.models.Authorities;
 import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import ru.alishev.springcourse.FirstSecurityApp.models.PersonRoles;
 import ru.alishev.springcourse.FirstSecurityApp.models.Roles;
@@ -33,9 +34,10 @@ public class PersonDetails implements UserDetails {
         List<SimpleGrantedAuthority> list = new ArrayList<>();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         for (int i = 0; i < personRoles.size(); i++) {
-            for (int j = 0; j < roles.get(i).getAuthorities().size(); j++) {
+            List<String> authorities = roles.get(i).getAuthoritiesList();
+            for (int j = 0; j < authorities.size(); j++) {
                 if (timestamp.after(personRoles.get(i).getFromDate()) && timestamp.before(personRoles.get(i).getByDate())) {
-                    list.add(new SimpleGrantedAuthority(personRoles.get(i).getRole().getAuthorities().get(j)));
+                    list.add(new SimpleGrantedAuthority(personRoles.get(i).getRole().getAuthoritiesList().get(j)));
                 }
             }
         }
