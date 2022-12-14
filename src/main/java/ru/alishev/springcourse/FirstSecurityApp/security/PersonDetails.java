@@ -7,6 +7,7 @@ import ru.alishev.springcourse.FirstSecurityApp.models.Authorities;
 import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import ru.alishev.springcourse.FirstSecurityApp.models.PersonRoles;
 import ru.alishev.springcourse.FirstSecurityApp.models.Roles;
+import ru.alishev.springcourse.FirstSecurityApp.repositories.AuthoritiesRepository;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -20,11 +21,13 @@ public class PersonDetails implements UserDetails {
     private final Person person;
     private final List<PersonRoles> personRoles;
     private final List<Roles> roles;
+    private final List<List<String>> authorities;
 
-    public PersonDetails(Person person, List<PersonRoles> personRoles, List<Roles> roles) {
+    public PersonDetails(Person person, List<PersonRoles> personRoles, List<Roles> roles, List<List<String>> authorities) {
         this.person = person;
         this.personRoles = personRoles;
         this.roles = roles;
+        this.authorities = authorities;
     }
 
     @Override
@@ -33,11 +36,17 @@ public class PersonDetails implements UserDetails {
         // ROLE_ADMIN, ROLE_USER - это роли
         List<SimpleGrantedAuthority> list = new ArrayList<>();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        List<String> access = new ArrayList<>();
         for (int i = 0; i < personRoles.size(); i++) {
-            List<String> authorities = roles.get(i).getAuthoritiesList();
+//            List<String> authorities = roles.get(i).getAuthoritiesList();
+            int roleId = roles.get(i).getId();
+
+//            access.add(authorities.get(i).get(roleId).getAccess());
             for (int j = 0; j < authorities.size(); j++) {
                 if (timestamp.after(personRoles.get(i).getFromDate()) && timestamp.before(personRoles.get(i).getByDate())) {
-                    list.add(new SimpleGrantedAuthority(personRoles.get(i).getRole().getAuthoritiesList().get(j)));
+                    for (int k = 0; k < authorities.get(j).size(); k++) {
+                        list.add(new SimpleGrantedAuthority(authorities.get(j).get(k)));
+                    }
                 }
             }
         }

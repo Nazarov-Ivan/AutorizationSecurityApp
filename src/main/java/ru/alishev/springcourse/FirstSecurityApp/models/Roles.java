@@ -23,9 +23,7 @@ public class Roles {
 //    @OneToMany(mappedBy = "role")
 //    private Set<PersonRoles> personRoles = new LinkedHashSet<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "authorities_id")
-    private Authorities authority;
+
 
 //    public Set<PersonRoles> getPersonRoles() {
 //        return personRoles;
@@ -51,25 +49,25 @@ public class Roles {
         this.id = id;
     }
 
-    public Authorities getAuthority() {
-        return authority;
-    }
+//    public Authorities getAuthority() {
+//        return authority;
+//    }
+//
+//    public void setAuthority(Authorities authorities) {
+//        this.authority = authorities;
+//    }
 
-    public void setAuthority(Authorities authorities) {
-        this.authority = authorities;
-    }
 
-
-    public List<String> getAuthoritiesList() {
-        List<String> listAuthorities = new ArrayList<>();
-        if (authority.getAdmin().length() > 0) {
-            listAuthorities.add(authority.getAdmin());
-        }
-        if (authority.getHello().length() > 0) {
-            listAuthorities.add(authority.getHello());
-        }
-        return listAuthorities;
-    }
+//    public List<String> getAuthoritiesList() {
+//        List<String> listAuthorities = new ArrayList<>();
+//        if (authority.getAdmin().length() > 0) {
+//            listAuthorities.add(authority.getAdmin());
+//        }
+//        if (authority.getHello().length() > 0) {
+//            listAuthorities.add(authority.getHello());
+//        }
+//        return listAuthorities;
+//    }
 
 //    @Transient
 //    List<String> authorities = List.of(authority.split(", "));
