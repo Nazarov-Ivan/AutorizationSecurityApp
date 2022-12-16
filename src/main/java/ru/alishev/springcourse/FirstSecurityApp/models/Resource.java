@@ -12,7 +12,6 @@ public class Resource {
     private Integer id;
 
     @NotNull
-    @Lob
     @Column(name = "name", nullable = false)
     private String name;
 

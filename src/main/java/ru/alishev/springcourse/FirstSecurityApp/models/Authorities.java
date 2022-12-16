@@ -20,7 +20,7 @@ public class Authorities {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "resource_id")
     private Resource resource;
 
